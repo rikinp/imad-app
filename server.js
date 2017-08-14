@@ -5,12 +5,62 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articleone = {
+    title: 'Article One | rikin patel',
+    heading: 'Article one',
+    date: 'sep 2 2017'
+    content: `<p>
+                this is article one and rikin has edited this.this is article one and rikin has edited this.this is article one and rikin has edited this.this is article one and rikin has edited this.this is article one and rikin has edited this.
+                </p>
+                
+                
+                <p>
+                this is article one and rikin has edited this.this is article one and rikin has edited this.this is article one and rikin has edited this.this is article one and rikin has edited this.this is article one and rikin has edited this.
+                </p>`
+    
+};
+function createTemplate (data) {
+var title =data.title;
+var date = data.date;
+var heading = data.heading;
+var content = data.heading;
+var htmltemplate = `
+<html>
+    <head>
+        <title>
+            ${title}
+        </title>
+        
+        <link href="/ui/style.css" rel="stylesheet" />
+    </head>
+        <body>
+        <div class=container>
+            <div>
+                <a href="/">Home</a>
+            </div>
+            <hr/>
+            <h2>
+                ${heading}
+            </h2>
+            <div>
+                ${date}
+            </div>
+            <div>
+                ${content}
+            </div>
+        </div>
+        </body>
+</html>
+`;
+return htmlTemplate;
+}
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one',function (req, res)  {
-    res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+    res.send(createTemplate(articleone));
 });    
 
 
