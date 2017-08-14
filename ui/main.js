@@ -1,8 +1,8 @@
 console.log('Loaded!');
 
-var object = document.getElementById('main-text');
+var element = document.getElementById('main-text');
 
-object.innerHTML = 'New value'; 
+element.innerHTML = 'New value'; 
 
 var img = document.getElementById('madi');
 img.onclick = function () {
